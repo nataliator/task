@@ -4,6 +4,12 @@
 
 using namespace std;
 
+struct Data{
+    int a;
+    int b;
+    int area;
+};
+
 int main()
 {
     string answear;
@@ -25,7 +31,7 @@ int main()
 
     int a;
     int b;
-    vector <int> tab;
+    vector <Data> tab;
 
     for (int i = 0; i <= (( metersOfFence / 2) - 1); i++)
         {
@@ -35,13 +41,26 @@ int main()
              int area;
              area = b * a;
              cout << "area = " << area <<endl;
-
-             tab.push_back( area );
-
-
+             Data data;
+             data.a = a;
+             data.b = b;
+             data.area = area;
+             tab.push_back( data );
 
        }
-    cout << "Max area = " << *max_element( tab.begin(), tab.end() );
+       int max = tab[0].area;
+       int index = 0;
+     for(int k = 0; k < tab.size();k++)
+     {
+         if(max < tab[k].area)
+         {
+             max = tab[k].area;
+             index = k;
+         }
+     }
+     cout << "Max area = " << max <<endl;
+     cout << "Optimal value of a = " << tab[index].a << endl;
+     cout << "Optimal value of b = " << tab[index].b << endl;
 
     return 0;
 }
