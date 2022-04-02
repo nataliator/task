@@ -12,6 +12,9 @@ struct Data{
 
 int main()
 {
+    /*
+    read and validate input
+    */
     string answear;
     do {
         cout << "Do you want to run algorithm? If yes, please write RUN and press enter" << endl;
@@ -29,12 +32,15 @@ int main()
     }
     while(( metersOfFence <= 0));
 
+   /*
+   compute area for each possible value of a and b
+   */
     int a;
     int b;
     vector <Data> tab;
 
     for (int i = 0; i <= (( metersOfFence / 2) - 1); i++)
-        {
+    {
              a = ( metersOfFence / 2) - i ;
              b = metersOfFence -( 2 * a );
              cout << "segment a = " << a << "  segment b = " << b << endl;
@@ -47,17 +53,21 @@ int main()
              data.area = area;
              tab.push_back( data );
 
-       }
-       int max = tab[0].area;
-       int index = 0;
-     for(int k = 0; k < tab.size();k++)
-     {
-         if(max < tab[k].area)
-         {
+    }
+
+   /*
+   find biggest area possible
+   */
+    int max = tab[0].area;
+    int index = 0;
+    for(int k = 0; k < tab.size();k++)
+    {
+        if(max < tab[k].area)
+        {
              max = tab[k].area;
              index = k;
-         }
-     }
+        }
+    }
      cout << "Max area = " << max <<endl;
      cout << "Optimal value of a = " << tab[index].a << endl;
      cout << "Optimal value of b = " << tab[index].b << endl;
